@@ -42,3 +42,39 @@ def delete_jewellery(id):
         return jsonify({'message': 'jewellery deleted successfully'}), 200
     else:
         return jsonify({'message': 'jewellery not found'}), 404
+
+def filter_jewellery():
+    query = {}
+    filter_data = request.get_json()
+
+    if 'gender' in filter_data:
+        query['gender'] = {'$in': filter_data['gender']}
+    if 'metal' in filter_data:
+        query['metal'] = {'$in': filter_data['metal']}
+    if 'price' in filter_data:
+        query['price'] = {'$lte': filter_data['price']}
+    if 'jewellery_type' in filter_data:
+        query['jewellery_type'] = filter_data['jewellery_type']
+    if 'color_theme' in filter_data:
+        query['color_theme'] = {'$in': filter_data['color_theme']}
+    if 'vendor' in filter_data:
+        query['vendor'] = filter_data['vendor']
+    if 'city' in filter_data:
+        query['city'] = filter_data['city']
+
+    result = list(collection.find(query, {'_id': 0}))
+    return jsonify(result), 200
+
+# sample schema
+# {
+#    "jewellery_image" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKDEFKY1tiFizHIBxiayHsRaFXb8ip3u6DkA&usqp=CAU",
+#    "occassions" : ["wedding" , "traditional"],
+#    "gender" : ["F"] ,
+#    "metal" : ["gold" , "diamond"] ,
+#    "price" : 95000,
+#    "jewellery_type" : "ring" , 
+#    "color_theme" : [] ,
+#    "vendor" : "jmc jewellers",
+#    "city" : "Indore" 
+ 
+# }

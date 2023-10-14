@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from views.jewelleryViews import create_jewellery, get_all_jewellery , index , get_jewellery,update_jewellery,delete_jewellery
+from views.jewelleryViews import create_jewellery, get_all_jewellery , index , get_jewellery,update_jewellery,delete_jewellery, filter_jewellery
 from views.usersViews import signup, login , get_all_users
 # Import other CRUD operations from views as needed
 
@@ -14,6 +14,8 @@ app.add_url_rule('/jewellery', 'get_all_jewellery', get_all_jewellery, methods=[
 app.add_url_rule('/jewellery/<id>', 'get_jewellery', get_jewellery, methods=['GET'])
 app.add_url_rule('/jewellery/<id>', 'update_jewellery', update_jewellery, methods=['PUT'])
 app.add_url_rule('/jewellery/<id>', 'delete_jewellery', delete_jewellery, methods=['DELETE'])
+
+app.add_url_rule('/filterjewellery', 'filter_jewellery', filter_jewellery , methods=['POST'])
 
 # users
 app.add_url_rule('/signup', 'signup', signup, methods=['POST'])
