@@ -1,1 +1,0 @@
-# ratniq_server
