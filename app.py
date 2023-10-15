@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Routes
-app.add_url_rule('/','test' , index , methods=['GET'])
+app.add_url_rule('/','serve_html_page' , index )
 app.add_url_rule('/jewellery', 'create_jewellery', create_jewellery, methods=['POST'])
 app.add_url_rule('/jewellery', 'get_all_jewellery', get_all_jewellery, methods=['GET'])
 app.add_url_rule('/jewellery/<id>', 'get_jewellery', get_jewellery, methods=['GET'])

@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request ,render_template
 from bson import ObjectId
 from config import Config
 
@@ -6,7 +6,7 @@ db = Config.get_database()
 collection = db['jewellery']
 
 def index():
-    return jsonify({"message":"success"})
+     return render_template('Index.html')
 
 def create_jewellery():
     data = request.get_json()
