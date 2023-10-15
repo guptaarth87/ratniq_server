@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+import os
 from views.jewelleryViews import create_jewellery, get_all_jewellery , index , get_jewellery,update_jewellery,delete_jewellery, filter_jewellery
 from views.usersViews import signup, login , get_all_users
 # Import other CRUD operations from views as needed
@@ -23,4 +24,6 @@ app.add_url_rule('/login', 'login', login, methods=['POST'])
 app.add_url_rule('/users', 'get_all_users', get_all_users, methods=['GET'])  # New route for getting all users
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    
